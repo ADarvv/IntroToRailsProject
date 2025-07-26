@@ -1,2 +1,44 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<h1>Our Products</h1>
+
+<!-- Search Form -->
+<%= form_with url: products_path, method: :get, local: true do |form| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= form.text_field :search, placeholder: "Search products...", 
+                         value: params[:search], class: "form-control" %>
+    </div>
+    <div class="col-md-4">
+      <%= form.select :category_id, 
+          options_from_collection_for_select(@categories, :id, :name, params[:category_id]),
+          { prompt: "All Categories" }, 
+          { class: "form-control" } %>
+    </div>
+    <div class="col-md-2">
+      <%= form.submit "Search", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+
+<br>
+
+<!-- Show what we're searching for -->
+<% if params[:search].present? %>
+  <p>Searching for: "<%= params[:search] %>"</p>
+<% end %>
+
+<!-- Show all products in a grid -->
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5><%= product.name %></h5>
+          <p><%= product.description %></p>
+          <p class="text-success">$<%= product.current_price %></p>
+          <p>Category: <%= product.category.name %></p>
+          <%= link_to "View Details", product_path(product), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
