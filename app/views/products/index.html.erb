@@ -21,12 +21,12 @@
 
 <br>
 
-<!-- Show what we're searching for -->
+
 <% if params[:search].present? %>
   <p>Searching for: "<%= params[:search] %>"</p>
 <% end %>
 
-<!-- Show all products in a grid -->
+
 <div class="row">
   <% @products.each do |product| %>
     <div class="col-md-4">

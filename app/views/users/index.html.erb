@@ -1,0 +1,16 @@
+<h1>Our Customers</h1>
+
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="col-md-6">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5><%= user.first_name %> <%= user.last_name %></h5>
+          <p>Email: <%= user.email %></p>
+          <p>Phone: <%= user.phone %></p>
+          <%= link_to "View Details", user_path(user), class: "btn btn-primary btn-sm" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
