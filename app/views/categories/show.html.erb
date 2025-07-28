@@ -10,7 +10,7 @@
         <div class="card-body">
           <h5><%= product.name %></h5>
           <p><%= truncate(product.description, length: 50) %></p>
-          <p class="text-success">$<%= product.current_price %>a</p>
+          <p class="text-success">$<%= product.current_price %></p>
           <%= link_to "View Product", product_path(product), class: "btn btn-primary btn-sm" %>
         </div>
       </div>
